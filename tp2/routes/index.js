@@ -26,7 +26,7 @@ router.post('/question1Examen', function(req, res, next) {
 router.post('/question2Examen', function(req, res, next) {
   res.render('question2Examen',  {title : 'question2Examen' });
 });
-router.get('/examenTermine', function(req, res, next) {
+router.post('/examenTermine', function(req, res, next) {
   res.render('examenTermine', {title : 'examenTermine' });
 });
 
