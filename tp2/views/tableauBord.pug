@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  main
+    h1 Menu personnel
+    form(method='Post', action='question1')
+        fieldset
+            legend Début d'un test rapide.
+            input(type='submit', value='Examen rapide')
+    form(method='Post', action='question1Examen')
+        fieldset
+            legend Début d'un examen officiel.
+            label(for='domaine')
+            select(name='domaine', id='domaine')
+                option(value='html', selected) HTML5
+                option(value='css', selected) CSS3
+                option(value='js', selected) Javascript
+            label(for='nombre') Choisissez le nombre de questions.
+            input(type='number', min='1', value='1', id='nombre')
+            input(type='submit', value='Examen officiel')
+        aside
+            h1 Statistique
+            p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 10 / 15
+            p Note des examens (Moyenne des scores des examens sur 20) : 15 / 20
+            p Examen 1 : 20 / 20
+            p: a( href='#lightbox', class='button') Voir détails...
+                

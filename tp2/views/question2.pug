@@ -1,0 +1,21 @@
+extends layout
+
+block content
+        section
+            h1 Questionnaire
+            section
+                form(method='POST',action='question1')
+                    fieldset
+                        p <b>Question 2 </b> Quelle est la syntaxe pour déclarer l'encodage des caractères du document en UTF-8 ?
+                        mixin question(num, reponse)
+                            input(type='radio',name='reponse', value=num, id = 'reponse'+num)
+                            label(for='reponse'+num)= reponse
+                        +question('1','<meta encoding="text/html; charset=utf-8">')
+                        +question('2','<meta encoding="text/html; charset=utf-9">')
+                        +question('3','<meta encoding="text/html; charset=utf-7">')
+                        a(class='button', href='tableauBord') Retour au menu
+                        input(type='submit', class='button', value='Question suivante')
+                aside
+                    h1 Statistiques
+                    p Note courante (Nombre de questions réussies / Nombre de questions répondues) : 1 / 2
+                   

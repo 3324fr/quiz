@@ -1,0 +1,29 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+nav {
+	padding: 0; 
+	margin: 0;
+}
+nav ul li{
+	display:inline-block;	
+	padding: 8px;
+	list-style: none; 	
+}
+nav ul a:hover:not(.current) {
+	background-color : #ccffff
+}
+nav ul a.current {
+	padding: 5px;
+	border: 2px solid;
+	border-radius: 4px;	
+	background-color : #ffcccc;
+	pointer-events: none;
+}
+
