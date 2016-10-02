@@ -1,14 +1,14 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 
 nav {
-	padding: 0; 
+ 	padding: 0; 
 	margin: 0;
 }
 nav ul li{
@@ -26,4 +26,25 @@ nav ul a.current {
 	background-color : #ffcccc;
 	pointer-events: none;
 }
-
+article .float img {
+	float: right;
+	margin: 0 1.5%;
+}
+section {
+	float: left;
+  	margin: 0 1.5%;
+  	width: 30%;
+}
+form {
+	float: left;
+	margin: 0 1.5%;
+	width: 60%;
+}
+aside {
+	float: right;
+	margin: 0 1.5%;
+	width: 30%;
+}
+footer {
+ 	clear: both;
+}
