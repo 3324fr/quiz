@@ -1,5 +1,5 @@
 body {
-	padding: 50px;
+	padding: 0;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 h1 {
@@ -18,8 +18,24 @@ a {
 header {
  	background-color : #eee
 }
-body header section{
-	display: none;
+a.button {
+	display: inline-block;
+	margin-bottom: 2px;
+	text-align: center;
+	background-color : #cba;
+	color: black;
+	border: 2px solid;
+	border-radius: 4px;
+}
+a.button:hover {
+	background-color : #ef2;
+}
+footer {
+ 	clear: both;
+}
+article .float img {
+	float: right;
+	margin: 0 1.5%;
 }
 nav {
  	padding: 0; 
@@ -27,7 +43,7 @@ nav {
 	display: inline-block;
 }
 nav ul li{
-	display:inline-block;	
+	display: inline-block;	
 	padding: 8px;
 	list-style: none; 	
 }
@@ -41,32 +57,31 @@ nav ul a.current {
 	background-color : #ffcccc;
 	pointer-events: none;
 }
-article .float img {
-	float: right;
-	margin: 0 1.5%;
+
+@media screen and (max-width: 768px)
+{
+	body header section{
+		display: none;
+	}
+	form {
+		width: 100%;
+	}
+	aside {
+		width: 100%;
+	}
+	
 }
-form {
-	float: left;
-	margin: 0 1.5%;
-	width: 60%;
+@media screen and (min-width: 768px) and (max-width: 1280px)
+{
+	form {
+		float: left;
+		margin: 0 1.5%;
+		width: 60%;
+	}
+	aside {
+		float: right;
+		margin: 0 1.5%;
+		width: 30%;
+	}
 }
-aside {
-	float: right;
-	margin: 0 1.5%;
-	width: 30%;
-}
-footer {
- 	clear: both;
-}
-a.button {
-	display: inline-block;
-	margin-bottom: 2px;
-	text-align: center;
-	background-color : #cba;
-	color: black;
-	border: 2px solid;
-	border-radius: 4px;
-}
-a.button:hover {
-	background-color : #ef2;
-}
+
