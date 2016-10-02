@@ -2,14 +2,29 @@ body {
 	padding: 50px;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
-a {
-	color: #00B7FF;
+h1 {
+	font-size: 32px;
+	text-shadow: -8px -8px #abcabc, 2px 2px #abcabc, -3px 0 4px #000;
+	color: green;
+	padding:16px;
+	font-weight:lighter;
+	text-align:center;
+	display:block;
+	margin:16px;
 }
-
+a {
+	color: green;
+}
+header {
+ 	background-color : #eee
+}
+body header section{
+	display: none;
+}
 nav {
  	padding: 0; 
 	margin: 0;
+	display: inline-block;
 }
 nav ul li{
 	display:inline-block;	
@@ -17,7 +32,7 @@ nav ul li{
 	list-style: none; 	
 }
 nav ul a:hover:not(.current) {
-	background-color : #ccffff
+	background-color : #ef2;
 }
 nav ul a.current {
 	padding: 5px;
@@ -29,11 +44,6 @@ nav ul a.current {
 article .float img {
 	float: right;
 	margin: 0 1.5%;
-}
-section {
-	float: left;
-  	margin: 0 1.5%;
-  	width: 30%;
 }
 form {
 	float: left;
@@ -47,4 +57,16 @@ aside {
 }
 footer {
  	clear: both;
+}
+a.button {
+	display: inline-block;
+	margin-bottom: 2px;
+	text-align: center;
+	background-color : #cba;
+	color: black;
+	border: 2px solid;
+	border-radius: 4px;
+}
+a.button:hover {
+	background-color : #ef2;
 }

@@ -6,18 +6,17 @@ html
     body
         header
             section
-            a(href='accueil') 
-                    img(src='/images/questionneur.png', alt='logo', width='100', height='150')
+                a(href='accueil') 
+                        img(src='/images/questionneur.png', alt='logo', width='100', height='150')
             nav
                 
                 ul
                     each name, item  in {'accueil' : 'Accueil', 'tableauBord' : 'Tableau de bord', 'instruction' : 'Instructions'}
                         li(id = item): a(class= item === current ? 'current' : '', href= item)= name
         block content
-        block foot
-            footer
-                section
-                    p: small © 2014-2016 Questionneur sur les notions de Web
-                    p: small TP LOG4420 par Frédéric Cloutier 1633375 et Loic 
+        footer
+            section
+                p: small © 2014-2016 Questionneur sur les notions de Web
+                p: small TP LOG4420 par Frédéric Cloutier 1633375 et Loic 
 
         
