@@ -23,5 +23,12 @@ block content
         p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 10 / 15
         p Note des examens (Moyenne des scores des examens sur 20) : 15 / 20
         p Examen 1 : 20 / 20
-        p: a( href='#lightbox', class='button') Voir détails...
-                
+        //La section suivant est inspirée de la solution HTML fournie au lien suivant: http://www.cssscript.com/minimal-overlay-modal-pure-css/
+        //Nous avons adapté celle-ci pour PUG et nos besoins
+        a.button(href='#modal1') Voir détails
+        #modal1.overlay
+            a.cancel(href='#')
+            .modal
+                h2 Statistiques détaillées
+                .content
+                    p L'on trouvera dans cette boîte des informations à propos des notes obtenues par le participant aux examens antérieurs
