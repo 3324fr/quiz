@@ -1,0 +1,18 @@
+extends layout
+
+block content
+        section
+            h1 Questionnaire
+            section
+                form(method='POST',action='question',id='monForm')
+                    fieldset
+                        p#question 
+                        #choix
+                        a(class='button', href='tableauBord') Retour au menu
+                        input(type='submit', class='button', value='Question suivante')
+                aside
+                    h1 Statistiques
+                    p Note courante (Nombre de questions réussies / Nombre de questions répondues) : 0 / 2
+                    
+block js
+        script(src='js/question.js')  

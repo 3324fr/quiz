@@ -3,18 +3,18 @@ extends layout
 block content
   main
     h1 Menu personnel
-    form(method='Post', action='question1')
+    form(method='Post', action='question')
         fieldset
             legend Début d'un test rapide.
             input(type='submit', value='Examen rapide')
-    form(method='Post', action='question1Examen')
+    form(method='Post', action='examen')
         fieldset
             legend Début d'un examen officiel.
             label(for='domaine')
             select(name='domaine', id='domaine')
-                option(value='html', selected) HTML5
-                option(value='css', selected) CSS3
-                option(value='js', selected) Javascript
+                option(value='html') HTML5
+                option(value='css') CSS3
+                option(value='js') Javascript
             label(for='nombre') Choisissez le nombre de questions.
             input(type='number', min='1', value='1', id='nombre')
             input(type='submit', value='Examen officiel')
@@ -32,3 +32,7 @@ block content
                 h2 Statistiques détaillées
                 .content
                     p L'on trouvera dans cette boîte des informations à propos des notes obtenues par le participant aux examens antérieurs
+                    
+block js
+    script(src='js/tableauBord.js')
+        

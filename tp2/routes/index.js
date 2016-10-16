@@ -14,19 +14,13 @@ router.get('/tableauBord', function(req, res, next) {
 router.get('/instruction', function(req, res, next) {
   res.render('instruction', {title : 'instruction', current : 'instruction' });
 });
-router.post('/question1', function(req, res, next) {
-  res.render('question1', {title : 'question1', current : 'instruction'});
+router.post('/question', function(req, res, next) {
+  res.render('question', {title : 'question'});
 });
-router.post('/question2', function(req, res, next) {
-  res.render('question2', {title : 'question2' });
+router.post('/examen', function(req, res, next) {
+  res.render('examen', {title : 'examen' });
 });
-router.post('/question1Examen', function(req, res, next) {
-  res.render('question1Examen',  {title : 'question1Examen' });
-});
-router.post('/question2Examen', function(req, res, next) {
-  res.render('question2Examen',  {title : 'question2Examen' });
-});
-router.post('/examenTermine', function(req, res, next) {
+router.get('/examenTermine', function(req, res, next) {
   res.render('examenTermine', {title : 'examenTermine' });
 });
 
