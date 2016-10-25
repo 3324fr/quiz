@@ -85,6 +85,28 @@ a {
 header {
  	background-color : #eee
 }
+
+#zonereponse {
+	display: inline-block;
+	width: 300px;
+	height: 75px;
+	border: 2px solid;
+	background-color: LightGray;
+	text-align: center;
+	line-height: 75px;
+}
+
+.reponse {
+	display: inline-block;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.borderReponse {
+	border: 3px solid red;
+}
+
+input.button,
 a.button {
 	display: inline-block;
 	margin-bottom: 2px;
@@ -93,7 +115,9 @@ a.button {
 	color: black;
 	border: 2px solid;
 	border-radius: 4px;
+	text-decoration: underline;
 }
+input.button:hover,
 a.button:hover {
 	background-color : #ef2;
 }

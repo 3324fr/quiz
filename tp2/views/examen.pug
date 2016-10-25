@@ -8,10 +8,11 @@ block content
                 form(method='POST',action='examen',id='monForm')
                     fieldset
                         p#question 
+                        #zonereponse(ondrop='drop(event)', ondragover='allowDrop(event)') Glisser la lettre de la réponse ici
                         #choix
-                        a(class='button', href='tableauBord') Retour au menu
                         #button
-                            input(type='submit', class='button', value='Question suivante')
+                        a(class='button', href='tableauBord' id="menuPrincipalBtn") Retour au menu (Abandon)
+                        input(type='submit', id="qSuivanteBtn", class='button', value='Question suivante')
                 aside
                     h1 Statistiques
                     p Note courante (Nombre de questions réussies / Nombre de questions répondues) : 0 / 2
