@@ -11,7 +11,8 @@
 		 $('#zonereponse').text("Glisser la lettre de la réponse ici");
          localStorage.setItem("numerateur", numerateur + 1);
          getajax(localStorage.getItem('domaine'));
-         if (numerateur == sessionStorage.getItem('nombre')) {
+         var nombre = sessionStorage.getItem('nombre');
+         if (numerateur === parseInt(nombre) || isNaN(parseInt(nombre, 10))) {
              $('#button').html('<a class="button" href="examenTermine">Examen Terminé</a>');
 			 $('#qSuivanteBtn').remove();
 			 $('#menuPrincipalBtn').remove();
