@@ -102,9 +102,13 @@ header {
 	margin-top: 5px;
 }
 
-.borderReponse {
+.borderMauvaiseReponse {
 	border: 3px solid red;
 }
+.borderBonneReponse {
+	border: 3px solid green;
+}
+
 
 input.button,
 a.button {

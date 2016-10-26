@@ -3,9 +3,9 @@
      nombre.change(function() {
          sessionStorage.setItem("nombre", nombre.val());
      });
-     
-     if(!NaN(nombre)) {
-        nombre.val( sessionStorage.getItem('nombre'));
+     storage = sessionStorage.getItem('nombre');
+     if( !isNaN(parseInt(storage, 10))) {
+        nombre.val(storage);
      }
      
      $('select[name = domaine]').change(function() {
