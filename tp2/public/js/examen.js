@@ -1,22 +1,6 @@
 'use strict';
 
 window.onload = function(){
-    $('#zonereponse').on('dragover',function (ev) {
-        ev.preventDefault();
-    });
-    
-    $('#zonereponse').on('drop',function (ev) {
-        ev.preventDefault();	
-        var data = ev.originalEvent.dataTransfer.getData("text");
-        var idstring = ev.originalEvent.dataTransfer.getData("id");
-        if(sessionStorage.getItem('reponse') == idstring)
-            $('#'+idstring).addClass('borderBonneReponse');
-        else   
-            $('#'+idstring).addClass('borderMauvaiseReponse');
-        ev.target.innerText = data;
-        $(this).off( 'dragover' );
-        $(this).off( 'drop' );
-    });
     var domaine = localStorage.getItem('domaine');
     getajax(domaine);
     $('#domaine').text(domaine);
@@ -51,6 +35,23 @@ function getajax(route) {$.getJSON( "ajax/"+route, function( data ) {
     });
     
     $('#choix').html(items);
+     sessionStorage.setItem("bonneReponse",0);
+    $('#zonereponse').on('dragover',function (ev) {
+        ev.preventDefault();
+    });
+    
+    $('#zonereponse').on('drop',function (ev) {
+        ev.preventDefault();	
+        var data = ev.originalEvent.dataTransfer.getData("text");
+        var idstring = ev.originalEvent.dataTransfer.getData("id");
+        if(sessionStorage.getItem('reponse') == idstring)
+            $('#'+idstring).addClass('borderBonneReponse');
+        else   
+            $('#'+idstring).addClass('borderMauvaiseReponse');
+        ev.target.innerText = data;
+        $(this).off( 'dragover' );
+        $(this).off( 'drop' );
+    });
 })};
 
 function drag(ev) {
