@@ -2,8 +2,7 @@ extends layout
 
 block content
         section
-            h1 Questionnaire
-                span(id='domaine') 
+            h1 Questionnaire Rapide
             section
                 form(method='POST',action='question',id='monForm')
                     fieldset
@@ -15,7 +14,7 @@ block content
                         input(type='submit', class='button', value='Question suivante')
                 aside
                     h1 Statistiques
-                    p Note courante (Nombre de questions réussies / Nombre de questions répondues) : 0 / 2
+                    p#note
                     
 block js
         script(src='js/question.js')  

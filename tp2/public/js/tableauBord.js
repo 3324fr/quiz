@@ -1,15 +1,15 @@
  window.onload = function(){
      nombre = $('#nombre');
      nombre.change(function() {
-         sessionStorage.setItem("nombre", nombre.val());
+         localStorage.setItem("nombre", nombre.val());
      });
-     storage = sessionStorage.getItem('nombre');
+     storage = localStorage.getItem('nombre');
      if( !isNaN(parseInt(storage, 10))) {
         nombre.val(storage);
      }
      
      $('select[name = domaine]').change(function() {
-         sessionStorage.setItem("domaine", $('#domaine :selected').val());
+         localStorage.setItem("domaine", $('#domaine :selected').val());
          
      });
 

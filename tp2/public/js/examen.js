@@ -1,31 +1,41 @@
 'use strict';
 
 window.onload = function(){
+    
+    $('#menuPrincipalBtn').on("click", function() {
+        localStorage.setItem("bonneReponse",0);
+        return true;
+    });
+    localStorage.setItem("bonneReponse",0);
+    localStorage.setItem("numerateur",0);
     var domaine = localStorage.getItem('domaine');
     getajax(domaine);
     $('#domaine').text(domaine);
-    localStorage.setItem("numerateur", 1);
     $('#monForm').on('submit', function(e) {          
         e.preventDefault(); 
-        var numerateur =  parseInt(localStorage.getItem('numerateur'));
         $('#zonereponse').text("Glisser la lettre de la réponse ici");
-        localStorage.setItem("numerateur", numerateur + 1);
         getajax(localStorage.getItem('domaine'));
-        var nombre = sessionStorage.getItem('nombre');
-        if (numerateur === parseInt(nombre) || isNaN(parseInt(nombre, 10))) {
+        var numerateur = parseInt(localStorage.getItem('numerateur'));
+        var nombre = localStorage.getItem('nombre');
+        if ((numerateur+2) == parseInt(nombre) || isNaN(parseInt(nombre, 10))) {
             $('#button').html('<a class="button" href="examenTermine">Examen Terminé</a>');
             $('#qSuivanteBtn').remove();
             $('#menuPrincipalBtn').remove();
-        } 
+        }
+        localStorage.setItem("numerateur",  numerateur + 1);
+        
     });
 } 
 
 function getajax(route) {$.getJSON( "ajax/"+route, function( data ) {
+    var bonneReponse = localStorage.getItem('bonneReponse');   
+    $('#note').text("Note courante (Nombre de questions réussies / Nombre de questions répondues) :" +
+    bonneReponse + "/" + localStorage.getItem('numerateur')); 
     var question = "<b>Domaine </b>" + data.domaine + "</br><b>Question " + data.id + " : </b> " + data.question;
     $('#question').html(question);
     
     var items = [];
-    sessionStorage.setItem("reponse", "reponse" + data.reponse);
+    localStorage.setItem("reponse", "reponse" + data.reponse);
     
     $.each( data.choix, function( key, val ) {
         var numeroQuestion = parseInt(key) + 1;
@@ -35,7 +45,6 @@ function getajax(route) {$.getJSON( "ajax/"+route, function( data ) {
     });
     
     $('#choix').html(items);
-     sessionStorage.setItem("bonneReponse",0);
     $('#zonereponse').on('dragover',function (ev) {
         ev.preventDefault();
     });
@@ -44,8 +53,10 @@ function getajax(route) {$.getJSON( "ajax/"+route, function( data ) {
         ev.preventDefault();	
         var data = ev.originalEvent.dataTransfer.getData("text");
         var idstring = ev.originalEvent.dataTransfer.getData("id");
-        if(sessionStorage.getItem('reponse') == idstring)
+        if(localStorage.getItem('reponse') == idstring) {
             $('#'+idstring).addClass('borderBonneReponse');
+            localStorage.setItem("bonneReponse", parseInt(bonneReponse)+1);
+        }
         else   
             $('#'+idstring).addClass('borderMauvaiseReponse');
         ev.target.innerText = data;
