@@ -4,6 +4,9 @@ block content
     main
         section
             h1 Examen terminé!
-            p Félicitations! Vous avez terminé l'examen avec une note de 2 / 2.
+            span Félicitations! Vous avez terminé l'examen avec une note de:  
+            span#note.shadow 2 / 2.
+        section   
             a(class='button', href='tableauBord') Retour au menu
-
+block js
+        script(src='js/examenTermine.js')  

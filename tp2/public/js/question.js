@@ -1,8 +1,6 @@
 'use strict';
 
 window.onload = function(){
-    localStorage.setItem("bonneReponseRapide",0);
-    localStorage.setItem("numerateurRapide",0);
     getajax();
     $('#monForm').on('submit', function(e) {          
         e.preventDefault(); 

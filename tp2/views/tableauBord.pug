@@ -20,9 +20,10 @@ block content
             input(type='submit', value='Examen officiel')
     aside
         h1 Statistique
-        p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 10 / 15
-        p Note des examens (Moyenne des scores des examens sur 20) : 15 / 20
-        p Examen 1 : 20 / 20
+        p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 
+        p#noteRapide 10 / 15
+        p Note des examens (Moyenne des scores des examens sur 100) : 
+        p#note.shadow 15 %
         //La section suivant est inspirée de la solution HTML fournie au lien suivant: http://www.cssscript.com/minimal-overlay-modal-pure-css/
         //Nous avons adapté celle-ci pour PUG et nos besoins
         a.button(href='#modal1') Voir détails
@@ -31,7 +32,7 @@ block content
             .modal
                 h2 Statistiques détaillées
                 .content
-                    p L'on trouvera dans cette boîte des informations à propos des notes obtenues par le participant aux examens antérieurs
+                    p Examen 1 : 20 / 20
                     
 block js
     script(src='js/tableauBord.js')
