@@ -18,6 +18,10 @@ block content
             label(for='nombre') Choisissez le nombre de questions.
             input(type='number', min='2', value='2', id='nombre')
             input(type='submit', value='Examen officiel')
+    form(method='Get', action='ajouterQuestion')
+        fieldset
+            legend Modification des questions
+            input(type='submit', value='Ajouter une question')
     aside
         h1 Statistique
         p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 
