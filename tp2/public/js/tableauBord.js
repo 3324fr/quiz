@@ -7,9 +7,11 @@
      if( !isNaN(parseInt(storage, 10))) {
          nombre.val(storage);
      }
-     
      $('select[name = domaine]').change(function() {
-         localStorage.setItem("domaine", $('#domaine :selected').val());
+         domaine = $('#domaine :selected').val();
+         $.getJSON( "/ajax/count" + domaine, function( data ) {
+        $('#nombre').attr("max", data);
+    });
          
      });
      

@@ -3,26 +3,27 @@ extends layout
 block content
   main
     h1 Menu personnel
-    form(method='Post', action='ajouterQuestion')
+    form(action='ajax/ajouterQuestion',id='monForm')
         fieldset
             legend Ajouter d'une question
             #label(for='sujet') Sujet de la question
-            select(name='sujet', id='sujet')
+            select(name='sujet', id='sujet', required)
                 option(value='html') HTML5
                 option(value='css') CSS3
                 option(value='js') Javascript
             #label(for'textquestion') Question
-            input(name='textquestion', type='text', id='textquestion')
+            input(name='textquestion', type='text', id='textquestion', required)
+            p#validationtextquestion.invalide
             #label(for'choixun') Choix #1
-            input(name='choixun', type='text', id='choixun')
+            input(name='choixun', type='text', id='choixun', required)
             #label(for'choixdeux') Choix #2
-            input(name='choixdeux', type='text', id='choixdeux')
+            input(name='choixdeux', type='text', id='choixdeux', required)
             #label(for'choixtrois') Choix #3
-            input(name='choixtrois', type='text', id='choixtrois')
+            input(name='choixtrois', type='text', id='choixtrois', required)
             #label(for'choixquatre') Choix #4
-            input(name='choixquatre', type='text', id='choixquatre')
+            input(name='choixquatre', type='text', id='choixquatre', required)
             #label(for='reponse') Reponse de la question
-            select(name='reponse', id='reponse')
+            select(name='reponse', id='reponse', required)
                 option(value=1) 1
                 option(value=2) 2
                 option(value=3) 3
@@ -30,5 +31,5 @@ block content
             p
             input(type='submit', value='Ajouter')
 block js
-    script(src='js/tableauBord.js')
+    script(src='js/ajouterQuestion.js')
         

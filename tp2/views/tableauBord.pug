@@ -3,11 +3,11 @@ extends layout
 block content
   main
     h1 Menu personnel
-    form(method='Post', action='question')
+    form(method='Get', action='question')
         fieldset
             legend Début d'un test rapide.
             input(type='submit', value='Examen rapide')
-    form(method='Post', action='examen')
+    form(method='Get', action='examen')
         fieldset
             legend Début d'un examen officiel.
             label(for='domaine')

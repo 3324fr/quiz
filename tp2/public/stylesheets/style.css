@@ -188,4 +188,12 @@ nav ul a.current {
 		width: 30%;
 	}
 }
+.invalide {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.valide {
+    color: #00D80C;
+    background-color: #BAFFBA;
+}
 

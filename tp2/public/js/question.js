@@ -5,7 +5,7 @@ window.onload = function(){
     $('#monForm').on('submit', function(e) {          
         e.preventDefault(); 
         $('#zonereponse').text("Glisser la lettre de la réponse ici");
-        getajax(localStorage.getItem('domaine'));
+        getajax();
         var numerateurRapide = parseInt(localStorage.getItem('numerateurRapide'));
         var nombre = localStorage.getItem('nombre');
         localStorage.setItem("numerateurRapide",  numerateurRapide + 1);
@@ -13,20 +13,22 @@ window.onload = function(){
     });
 } 
 
-function getajax() {$.getJSON( "ajax/", function( data ) {
-    var bonneReponseRapide = localStorage.getItem('bonneReponseRapide');   
+function getajax() {$.getJSON( "/ajax/random", function( data ) {
+    
+    var bonneReponseRapide = localStorage.getItem('bonneReponseRapide'); 
+    
+       
     $('#note').text("Note courante (Nombre de questions réussies / Nombre de questions répondues) :" +
     bonneReponseRapide + "/" + localStorage.getItem('numerateurRapide')); 
-    var question = "<b>Domaine </b>" + data.domaine + "</br><b>Question " + data.id + " : </b> " + data.question;
+    var question = "<b>Domaine </b>" + data.subject + "</br><b>Question " + data._id + " : </b> " + data.question_text;
     $('#question').html(question);
-    
     var items = [];
     localStorage.setItem("reponse", "reponse" + data.reponse);
-    
-    $.each( data.choix, function( key, val ) {
+    var choix = {1: data.choix_un, 2 : data.choix_deux, 3 : data.choix_trois, 4 : data.choix_quatre}; 
+    $.each( choix, function( key, val ) {
         var numeroQuestion = parseInt(key) + 1;
-        var reponse = '<div class="reponse" name="reponse" draggable="true" ondragstart="drag(event)" value="' + val.id + '" id="reponse' + val.id + 
-        '" type="radio"><label for="reponse' + val.id + '">'+ numeroQuestion + ". " + val.text + '</label></div> </br>';
+        var reponse = '<div class="reponse" name="reponse" draggable="true" ondragstart="drag(event)" value="' + key + '" id="reponse' + key + 
+        '" type="radio"><label for="reponse' + key + '">'+ numeroQuestion + ". " + val + '</label></div> </br>';
         items.push( reponse );
     });
     

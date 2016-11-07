@@ -1,5 +1,6 @@
 var mongoose = require( 'mongoose' );
 var Schema = mongoose.Schema;
+var random = require('mongoose-simple-random');
 var autoIncrement = require('mongoose-auto-increment');
 
 var connection =  mongoose.connect( 'mongodb://tp4420users:tp4420@ds145667.mlab.com:45667/tp4420' );
@@ -16,5 +17,6 @@ var questionSchema = new Schema({
 });
 
 questionSchema.plugin(autoIncrement.plugin, 'Question');
+questionSchema.plugin(random);
 
 mongoose.model( 'Question', questionSchema );

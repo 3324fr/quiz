@@ -1,5 +1,5 @@
 'use strict';
-
+var numQuestion = 0;
 window.onload = function(){
     
     $('#menuPrincipalBtn').on("click", function() {
@@ -27,39 +27,45 @@ window.onload = function(){
     });
 } 
 
-function getajax(route) {$.getJSON( "ajax/"+route, function( data ) {
-    var bonneReponse = localStorage.getItem('bonneReponse');   
+function getajax(route) {$.getJSON( "ajax/examen?subject="+route, function( data ) {
+    
+    data = data[0];
     $('#note').text("Note courante (Nombre de questions réussies / Nombre de questions répondues) :" +
-    bonneReponse + "/" + localStorage.getItem('numerateur')); 
-    var question = "<b>Domaine </b>" + data.domaine + "</br><b>Question " + data.id + " : </b> " + data.question;
+    55 + "/" + 100); 
+    var question = "<b>Domaine </b>" + data.subject + "</br><b>Question " + data._id + " : </b> " + data.question_text;
     $('#question').html(question);
     
     var items = [];
-    localStorage.setItem("reponse", "reponse" + data.reponse);
+    var choix = {1: data.choix_un, 2 : data.choix_deux, 3 : data.choix_trois, 4 : data.choix_quatre}; 
     
-    $.each( data.choix, function( key, val ) {
-        var numeroQuestion = parseInt(key) + 1;
-        var reponse = '<div class="reponse" name="reponse" draggable="true" ondragstart="drag(event)" value="' + val.id + '" id="reponse' + val.id + 
-        '" type="radio"><label for="reponse' + val.id + '">'+ numeroQuestion + ". " + val.text + '</label></div> </br>';
+    $.each( choix, function( key, val ) {
+        var numeroQuestion = parseInt(key);
+        var reponse = '<div class="reponse" name="reponse" draggable="true" ondragstart="drag(event)" value="' + key + '" id="' + key + 
+        '" type="radio"><label for="reponse' + key + '">'+ numeroQuestion + ". " + val + '</label></div> </br>';
         items.push( reponse );
     });
     
     $('#choix').html(items);
+    numQuestion = data._id;
     $('#zonereponse').on('dragover',function (ev) {
         ev.preventDefault();
     });
     
     $('#zonereponse').on('drop',function (ev) {
-        ev.preventDefault();	
-        var data = ev.originalEvent.dataTransfer.getData("text");
+        ev.preventDefault();
         var idstring = ev.originalEvent.dataTransfer.getData("id");
-        if(localStorage.getItem('reponse') == idstring) {
-            $('#'+idstring).addClass('borderBonneReponse');
-            localStorage.setItem("bonneReponse", parseInt(bonneReponse)+1);
-        }
-        else   
-            $('#'+idstring).addClass('borderMauvaiseReponse');
-        ev.target.innerText = data;
+        var posting = $.post( 'ajax/examen/', { id : idstring, question : numQuestion }  );
+        posting.always(function( data ) {
+            var idstring = ev.originalEvent.dataTransfer.getData("id");
+            if(data == idstring) {
+                $('#'+idstring).addClass('borderBonneReponse');
+                
+            }
+            else   
+                $('#'+idstring).addClass('borderMauvaiseReponse');
+            
+        });
+        ev.target.innerText = ev.originalEvent.dataTransfer.getData("text");
         $(this).off( 'dragover' );
         $(this).off( 'drop' );
     });
