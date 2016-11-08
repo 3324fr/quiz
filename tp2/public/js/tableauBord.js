@@ -10,10 +10,19 @@
      $('select[name = domaine]').change(function() {
          domaine = $('#domaine :selected').val();
          $.getJSON( "/ajax/count" + domaine, function( data ) {
-        $('#nombre').attr("max", data);
-    });
+             $('#nombre').attr("max", data);
+         });
          
      });
+//      $('#monForm').on('submit', function(e) {          
+//         e.preventDefault(); 
+//          var posting = $.post( $(this).attr( "action" ),$(this).serialize() );
+//         posting.always(function( data ) {
+//             alert( data );
+//         });
+//         
+//    });
+     
      
      $('#noteRapide').text(localStorage.getItem("bonneReponseRapide")+ "/"+   localStorage.getItem("numerateurRapide"));
      
@@ -29,10 +38,11 @@
          var reponse = '<p> Examen ' + i +' domaine ' + localStorage.getItem('examenDomaine' + i) + ' :' +  examenReponse + '/' +  examenNombre + "</p>";
          items.push( reponse );
      }
-    $('.content').html(items);
-    $('#note').text( (moyenneA/moyenneB)*100 + "%");
-    $('#domaine').val(localStorage.getItem('domaine'));
+     $('.content').html(items);
+     $('#note').text( (moyenneA/moyenneB)*100 + "%");
+     $('#domaine').val(localStorage.getItem('domaine'));
  } 
+ 
  
  
  

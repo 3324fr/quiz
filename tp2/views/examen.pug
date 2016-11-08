@@ -3,7 +3,9 @@ extends layout
 block content
         section
             h1 Questionnaire 
-                span(id='domaine') 
+                span !{domaine} 
+                h2 #
+                    span !{exam_id} 
             section
                 form(method='GET',action='randomexamen',id='monForm')
                     fieldset
@@ -11,8 +13,14 @@ block content
                         #zonereponse Glisser la lettre de la réponse ici
                         #choix
                         #button
+                        input#numquestion(type='hidden', name="question" )
+                        input(type='hidden', name="reponse", id ="reponse" )
+                        input(type='hidden', name="domaine", id ="domaine",value=domaine )
+                        input(type='hidden', name="exam", id ="exam",value=exam_id )
+                        input(type='submit', class='button', value='Valider')
                         a(class='button', href='tableauBord' id="menuPrincipalBtn") Retour au menu (Abandon)
-                        input(type='submit', id="qSuivanteBtn", class='button', value='Question suivante')
+                        a(class='button', href= "examen/#{exam_id}", id="qSuivanteBtn") Question suivante 
+                        
                 aside
                     h1 Statistiques
                     p#note 

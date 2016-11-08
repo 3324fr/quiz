@@ -7,7 +7,7 @@ block content
         fieldset
             legend Début d'un test rapide.
             input(type='submit', value='Examen rapide')
-    form(method='Get', action='examen')
+    form(method='Post', action='examen')
         fieldset
             legend Début d'un examen officiel.
             label(for='domaine')
@@ -16,8 +16,10 @@ block content
                 option(value='css') CSS3
                 option(value='js') Javascript
             label(for='nombre') Choisissez le nombre de questions.
-            input(type='number', min='2', value='2', id='nombre')
+            input(type='number', min='2', value='2',name = 'nombre', id='nombre')
+            input(type='hidden', name = 'examen_id', value='0')
             input(type='submit', value='Examen officiel')
+           
     form(method='Get', action='ajouterQuestion')
         fieldset
             legend Modification des questions

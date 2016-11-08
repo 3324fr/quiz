@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Question = mongoose.model('Question');
+var Examen = mongoose.model('Examen');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,9 +20,6 @@ router.get('/instruction', function(req, res, next) {
 router.get('/question', function(req, res, next) {
     res.render('question', {title : 'question'});
 });
-router.get('/examen', function(req, res, next) {
-    res.render('examen', {title : 'examen' });
-});
 router.get('/examenTermine', function(req, res, next) {
     res.render('examenTermine', {title : 'examenTermine' });
 });
@@ -29,5 +27,20 @@ router.get('/examenTermine', function(req, res, next) {
 router.get('/ajouterQuestion', function(req, res, next) {
     res.render('ajouterQuestion', {title : 'ajouterQuestion' });
 });
+router.post('/examen',function(req, res, next){
+    new Examen({
+        subject : req.body.domaine,
+        note_finale : -1,
+        bonne_repones : 0,
+        progression : 0,
+        progression_finale : parseInt(req.body.nombre)
+    }).save( function(err, todo, count){
+        if(err)
+            res.next();
+        res.render('examen', {title : 'examen', exam_id : todo.id, domaine : todo.subject });
+    });
+});
 
-module.exports = router;
+                
+                module.exports = router;
+                

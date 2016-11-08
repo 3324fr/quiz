@@ -15,8 +15,17 @@ var questionSchema = new Schema({
  choix_trois : String,
  choix_quatre : String,
 });
+var exmenSchema = new Schema({
+ subject : String,
+ note_finale : Number,
+ bonne_repones : Number,
+ progression : Number,
+ progression_finale : Number
+});
 
 questionSchema.plugin(autoIncrement.plugin, 'Question');
 questionSchema.plugin(random);
+exmenSchema.plugin(autoIncrement.plugin, 'Examen');
 
 mongoose.model( 'Question', questionSchema );
+mongoose.model( 'Examen', exmenSchema );

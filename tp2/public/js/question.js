@@ -26,7 +26,7 @@ function getajax() {$.getJSON( "/ajax/random", function( data ) {
     localStorage.setItem("reponse", "reponse" + data.reponse);
     var choix = {1: data.choix_un, 2 : data.choix_deux, 3 : data.choix_trois, 4 : data.choix_quatre}; 
     $.each( choix, function( key, val ) {
-        var numeroQuestion = parseInt(key) + 1;
+        var numeroQuestion = parseInt(key);
         var reponse = '<div class="reponse" name="reponse" draggable="true" ondragstart="drag(event)" value="' + key + '" id="reponse' + key + 
         '" type="radio"><label for="reponse' + key + '">'+ numeroQuestion + ". " + val + '</label></div> </br>';
         items.push( reponse );
@@ -41,12 +41,13 @@ function getajax() {$.getJSON( "/ajax/random", function( data ) {
         ev.preventDefault();	
         var data = ev.originalEvent.dataTransfer.getData("text");
         var idstring = ev.originalEvent.dataTransfer.getData("id");
+        var idstringdata = '#' +localStorage.getItem('reponse');
         if(localStorage.getItem('reponse') == idstring) {
-            $('#'+idstring).addClass('borderBonneReponse');
             localStorage.setItem("bonneReponseRapide", parseInt(bonneReponseRapide)+1);
         }
         else   
-            $('#'+idstring).addClass('borderMauvaiseReponse');
+            $('#'+idstring).addClass('borderMauvaiseReponse'); 
+        $(idstringdata).addClass('borderBonneReponse');
         ev.target.innerText = data;
         $(this).off( 'dragover' );
         $(this).off( 'drop' );
