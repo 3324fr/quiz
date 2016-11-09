@@ -140,6 +140,10 @@ a.button {
 	border-radius: 4px;
 	text-decoration: underline;
 }
+
+a.button.invisible {
+	display: none;
+}
 input.button:hover,
 a.button:hover {
 	background-color : #ef2;

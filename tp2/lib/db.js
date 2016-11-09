@@ -22,6 +22,22 @@ var exmenSchema = new Schema({
  progression : Number,
  progression_finale : Number
 });
+var userSchema = new Schema({
+ user_id : Number,
+ current_exam : Number,
+ question_html : Number,
+ question_css : Number,
+ question_js : Number,
+ bonnereponse_html : Number,
+ bonnereponse_css : Number,
+ bonnereponse_js : Number,
+ examen_html : Number,
+ examen_css : Number,
+ examen_js : Number,
+ totalpoint_html : Number,
+ totalpoint_css : Number,
+ totalpoint_js : Number
+});
 
 questionSchema.plugin(autoIncrement.plugin, 'Question');
 questionSchema.plugin(random);
@@ -29,3 +45,4 @@ exmenSchema.plugin(autoIncrement.plugin, 'Examen');
 
 mongoose.model( 'Question', questionSchema );
 mongoose.model( 'Examen', exmenSchema );
+mongoose.model( 'CurrentUser', userSchema );

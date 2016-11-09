@@ -3,6 +3,8 @@ var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Question = mongoose.model('Question');
 var Examen = mongoose.model('Examen');
+var CurrentUser = mongoose.model('CurrentUser');
+
 
 router.get('/random', function(req, res, next) {
     Question.findOneRandom(function(err, todo) {
@@ -40,21 +42,29 @@ router.post('/examen', function(req, res) {
     Question.findOne({_id: req.body.question}, function(err, bear) {
             if (err)
                 res.send(err);
-            if(bear.reponse == req.body.id)
-            Examen.findOneAndUpdate({_id: req.body.exam_id}, {$inc:{progression:1}}, {upsert:false}, function(err2, result2){
-                if (err2) 
-                    res.send(err2);
-                
-            });
-        else
-            Examen.findOneAndUpdate({_id: req.body.exam_id}, {$inc:{progression:1, bonne_repones : 1}}, {upsert:false}, function(err3, result3){
-                if (err3) 
-                    res.send(err3);
-                
-            });
-            res.json(bear.reponse);
-});
-
+            if(bear.reponse != parseInt(req.body.reponse))
+			{
+				Examen.findOneAndUpdate({_id: parseInt(req.body.exam)}, {$inc:{progression:1}}, {upsert:false}, function(err2, result2){
+					if (err2) 
+						res.send(err2);
+				});
+			}
+			else
+			{
+				Examen.findOneAndUpdate({_id: parseInt(req.body.exam)}, {$inc:{progression:1, bonne_repones : 1}}, {upsert:false}, function(err3, result3){
+					if (err3) 
+						res.send(err3);
+				});
+			}
+			var progres = Examen.findOne( {_id: parseInt(req.body.exam)}, function(err, exam){
+				if(err)
+					res.send(err);
+				else
+				{
+					res.json({"reponse": bear.reponse, "restant": exam.progression_finale-exam.progression-1});
+				}
+			});
+	});
 });
 
      

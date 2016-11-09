@@ -1,37 +1,54 @@
+var valider = false;
+var terminer = false;
+
 
 $(function(){
     
     
     getajax();
     $('#menuPrincipalBtn').on("click", function() {
+		valider = false;
         return true;
     });
     $('#qSuivanteBtn').on("click", function() {
-        getajax();
+		if(valider)
+		{
+			getajax();
+			$('#zonereponse').text("Glisser la lettre de la réponse ici");
+			valider = false;
+		}
+		else
+		{
+			window.alert("Vous devez valider votre reponse !");
+		}
         return false;
     });
-    $('#monForm').on('submit', function(e) {          
+    $('#monForm').on('submit', function(e) {
         e.preventDefault();
-        
-        
-        
-        $.post( 'ajax/examen/',$(this).serialize())
-        .done(function( data ) {
-            var idstring = '#' +$('#reponse').val();
-            var idstringdata = '#' +data;
-            if(data == $('#reponse').val()) {
-                
-            }
-            else   
-                $(idstring).addClass('borderMauvaiseReponse');
-            $(idstringdata).addClass('borderBonneReponse');
-            $('#zonereponse').off( 'dragover' );
-            $('#zonereponse').off( 'drop' );
-            
-        }).fail(function( data ) {
-            alert("error");
-        });
-        
+		
+		if(valider)
+			window.alert("Vous avez deja valider votre reponse !")
+		else 
+		{
+			$.post( 'ajax/examen/',$(this).serialize())
+				.done(function( data ) {
+					console.log(data);
+					var idstring = '#' +$('#reponse').val();
+					var idstringdata = '#' + data.reponse;
+					if(data.reponse == $('#reponse').val()) {
+					}
+					else   
+						$(idstring).addClass('borderMauvaiseReponse');
+					$(idstringdata).addClass('borderBonneReponse');
+					$('#zonereponse').off( 'dragover' );
+					$('#zonereponse').off( 'drop' );
+					valider = true;
+					if(data.restant == 1)
+						terminer = true;
+				}).fail(function( data ) {
+					alert("error");
+				});
+		}        
     });
     
 });
@@ -41,7 +58,6 @@ $(function(){
 function getajax() {
     var url = "ajax/examen"+$('#domaine').val();
     $.getJSON( url, function( data ) {
-        
         data = data[0];
         $('#note').text("Note courante (Nombre de questions réussies / Nombre de questions répondues) :" +
         55 + "/" + 100); 
@@ -69,6 +85,12 @@ function getajax() {
             $('#reponse').val(ev.originalEvent.dataTransfer.getData("id"));
             
         });
+		if(terminer == true)
+		{
+			$('#qSuivanteBtn').addClass('invisible');
+			$('#examTerminerBtn').removeClass('invisible');
+		}
+		terminer = false;
     });
 }
 
