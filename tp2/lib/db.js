@@ -38,11 +38,17 @@ var userSchema = new Schema({
  totalpoint_css : Number,
  totalpoint_js : Number
 });
+var gourdeSchema = new Schema({
+ user_id : Number,
+ point : Number
+});
 
 questionSchema.plugin(autoIncrement.plugin, 'Question');
 questionSchema.plugin(random);
 exmenSchema.plugin(autoIncrement.plugin, 'Examen');
+gourdeSchema.plugin(autoIncrement.plugin, 'Gourde');
 
 mongoose.model( 'Question', questionSchema );
 mongoose.model( 'Examen', exmenSchema );
 mongoose.model( 'CurrentUser', userSchema );
+mongoose.model( 'Gourde', gourdeSchema );

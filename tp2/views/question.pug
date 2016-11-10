@@ -10,8 +10,11 @@ block content
                         #zonereponse Glisser la lettre de la réponse ici
                         #choix
                         #button
+                        input#numquestion(type='hidden', name="question" )
+                        input(type='hidden', name="reponse", id ="reponse" )
                         a(class='button', href='tableauBord') Retour au menu
-                        input(type='submit', class='button', value='Question suivante')
+                        a(class='button', id="qSuivanteBtn") Question suivante
+                        input(type='submit', class='button', value='Valider')
                 aside
                     h1 Statistiques
                     p#note
