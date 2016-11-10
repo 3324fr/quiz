@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
         if (err)
             res.send(err);
         
-        if(bear.reponse != reponse) {
+        if(bear.reponse == reponse) {
             new Gourde({
                 user_id: 1,
                 point: 1,

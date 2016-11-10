@@ -19,12 +19,10 @@ window.onload = function(){
     $('#monForm').on('submit', function(e) {          
         e.preventDefault(); 
         $('#zonereponse').text("Glisser la lettre de la réponse ici");
-        console.log($(this).serialize());
         $.post( 'ajaxgourde/',$(this).serialize()).done(function( data ) {
-					console.log(data);
 					var idstring = '#' +$('#reponse').val();
-					var idstringdata = '#' + data.reponse;
-					if(data.reponse != $('#reponse').val()) {
+					var idstringdata = '#' + data;
+					if(data == $('#reponse').val()) {
 					}
 					else   
 						$(idstring).addClass('borderMauvaiseReponse');
