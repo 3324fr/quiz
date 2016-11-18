@@ -43,7 +43,7 @@ $(function(){
 					$('#zonereponse').off( 'dragover' );
 					$('#zonereponse').off( 'drop' );
 					valider = true;
-					if(data.restant == 1)
+					if(data.restant <= 1)
 						terminer = true;
 				}).fail(function( data ) {
 					alert("error");

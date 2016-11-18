@@ -24,10 +24,23 @@ block content
         fieldset
             legend Modification des questions
             input(type='submit', value='Ajouter une question')
+    form(method='Post', action='reprendreExamen' id='repriseExam')
+        fieldset
+            legend Reprendre un examen
+            input(type='hidden', name='reprise', value='1', id='reprise')
+            input(type='submit', value='Reprendre')
+    form(method='Post', action='reinitialiserStatistiques')
+        fieldset
+            legend Reinitialiser les statistiques
+            input(type='submit', value='Reinitialiser')
+    form(method='Post', action='reinitialiserExamens')
+        fieldset
+            legend Reinitialiser les examens
+            input(type='submit', value='Reinitialiser')
     aside
         h1 Statistique
-        p Note test rapide (Nombre de questions réussies / Nombre de questions répondues) : 
-        p#noteRapide 10 / 15
+        p Note examens (Tous les examens termines) : 
+        p#noteRapide 
         p Note des examens (Moyenne des scores des examens sur 100) : 
         p#note.shadow 15 %
         //La section suivant est inspirée de la solution HTML fournie au lien suivant: http://www.cssscript.com/minimal-overlay-modal-pure-css/
@@ -38,7 +51,7 @@ block content
             .modal
                 h2 Statistiques détaillées
                 .content
-                    p Examen 1 : 20 / 20
+                    p#fenetreModale
                     
 block js
     script(src='js/tableauBord.js')

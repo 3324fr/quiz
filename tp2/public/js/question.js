@@ -56,6 +56,7 @@ function getajax() {
             items.push( reponse );
         });
         $('#numquestion').val(data._id);
+		$('#domaine').val(data.subject);
         $('#choix').html(items);
         $('#zonereponse').on('dragover',function (ev) {
             ev.preventDefault();

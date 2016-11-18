@@ -40,6 +40,7 @@ router.get('/examenjs', function(req, res) {
 router.post('/examen', function(req, res) {
     
     Question.findOne({_id: req.body.question}, function(err, bear) {
+			console.log(req.body);
             if (err)
                 res.send(err);
             if(bear.reponse != parseInt(req.body.reponse))
@@ -48,6 +49,27 @@ router.post('/examen', function(req, res) {
 					if (err2) 
 						res.send(err2);
 				});
+				if(req.body.domaine == "html")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_html:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
+				else if(req.body.domaine == "css")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_css:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
+				else if(req.body.domaine == "js")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_js:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
 			}
 			else
 			{
@@ -55,8 +77,30 @@ router.post('/examen', function(req, res) {
 					if (err3) 
 						res.send(err3);
 				});
+				if(req.body.domaine == "html")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_html:1, totalpoint_html:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
+				else if(req.body.domaine == "css")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_css:1, totalpoint_css:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
+				else if(req.body.domaine == "js")
+				{
+					CurrentUser.findOneAndUpdate({user_id: 1}, {$inc:{examen_js:1, totalpoint_js:1}}, {upsert:false}, function(err4,result3){
+						if(err4)
+							res.send(err4);
+					});
+				}
 			}
-			var progres = Examen.findOne( {_id: parseInt(req.body.exam)}, function(err, exam){
+			
+			Examen.findOne( {_id: parseInt(req.body.exam)}, function(err, exam){
 				if(err)
 					res.send(err);
 				else
@@ -135,6 +179,47 @@ router.route('/ajouterQuestion')
     
 });
 
+router.get('/examEnCours', function(req, res, next){
+	CurrentUser.findOne({user_id: 1}, function(err, userItem){
+		if(err)
+			res.json("err");
+		if(userItem.current_exam != -1)
+			res.json("true");
+		else
+			res.json("false");
+	});
+});
+
+router.get('/noteExamTermine', function(req, res, next){
+	CurrentUser.findOne({user_id: 1}, function(err, userItem){
+		if(err)
+			res.json("err");
+		if(userItem.current_exam != -1)
+			Examen.findOne({_id: userItem.current_exam.toString()}, function(err2, examItem){
+				if(err2)
+					res.json(err2);
+				res.json(examItem);
+			});
+		else
+			res.json("false");
+	});
+});
+
+router.get('/utilisateur', function(req, res, next){
+	CurrentUser.findOne({user_id: 1}, function(err, userItem){
+		if(err)
+			res.json("err");
+		res.json(userItem);
+	});
+});
+
+router.get('/tousLesExams', function(req, res, next){
+	Examen.find({}, function(err, examItems){
+		if(err)
+			res.json("err");
+		res.json(examItems);
+	});
+});
 
 
 
