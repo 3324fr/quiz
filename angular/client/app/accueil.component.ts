@@ -7,5 +7,5 @@ import { Component  } from '@angular/core';
 })
 
 export class AccueilComponent {
-
+    title = 'Questionneur sur le web'
 }

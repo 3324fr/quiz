@@ -1,9 +1,9 @@
 main
     article
-        h1  Questionneur sur le web
+        h1 {{title}}
         .image: img( src='images/html-css-js.png' alt='splash screen picture')
         p Ce site web permet au gens de tester leurs connaissances théoriques sur les technologies du Web 2.0.
         h2 Détails
         p L'ensemble des questions qui seront posées porteront sur HTML5, CSS3 et Javascript.
-        a(href='tableauBord', class='button') Accéder au tableau de bord.
-
+        a([routerLink]="['/tableauBord']" class="button") Accéder au tableau de bord.
+router-outlet 

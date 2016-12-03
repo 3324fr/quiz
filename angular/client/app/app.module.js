@@ -11,18 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var accueil_component_1 = require('./accueil.component');
 var instruction_component_1 = require('./instruction.component');
 var tableaubord_component_1 = require('./tableaubord.component');
+var questionrapide_component_1 = require('./questionrapide.component');
+var question_service_1 = require('./question.service');
 var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, app_routing_module_1.AppRoutingModule],
-            declarations: [app_component_1.AppComponent, accueil_component_1.AccueilComponent, instruction_component_1.InstructionComponent, tableaubord_component_1.TableaubordComponent],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule],
+            declarations: [app_component_1.AppComponent, accueil_component_1.AccueilComponent, instruction_component_1.InstructionComponent, tableaubord_component_1.TableaubordComponent, questionrapide_component_1.QuestionrapideComponent],
+            providers: [question_service_1.QuestionService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

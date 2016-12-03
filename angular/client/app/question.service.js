@@ -9,18 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AccueilComponent = (function () {
-    function AccueilComponent() {
-        this.title = 'Questionneur sur le web';
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
+var QuestionService = (function () {
+    function QuestionService(http) {
+        this.http = http;
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        this.appUrl = '/ajax';
     }
-    AccueilComponent = __decorate([
-        core_1.Component({
-            selector: 'accueil',
-            templateUrl: 'templates/accueil'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AccueilComponent);
-    return AccueilComponent;
+    QuestionService.prototype.getQuestion = function () {
+        return this.http.get(this.appUrl + '/random')
+            .toPromise()
+            .then(function (response) { return response.json().data; });
+    };
+    QuestionService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], QuestionService);
+    return QuestionService;
 }());
-exports.AccueilComponent = AccueilComponent;
-//# sourceMappingURL=accueil.component.js.map
+exports.QuestionService = QuestionService;
+//# sourceMappingURL=question.service.js.map

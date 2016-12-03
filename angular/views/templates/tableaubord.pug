@@ -1,9 +1,8 @@
 main
     h1 Menu personnel
-    form(method='Get', action='question')
-        fieldset
-            legend Début d'un test rapide.
-            input(type='submit', value='Examen rapide')
+    fieldset
+        legend Début d'un test rapide.
+        a([routerLink]="['/questionRapide']" class="button") Question Rapide
     form(method='Post', action='examen')
         fieldset
             legend Début d'un examen officiel.
@@ -52,4 +51,5 @@ main
                     
     block js
     script(src='js/tableauBord.js')
+router-outlet
     

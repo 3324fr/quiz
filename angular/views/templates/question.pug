@@ -1,0 +1,20 @@
+main
+	h1 Questionnaire Rapide
+	section
+	form(method='POST',action='question',id='monForm')
+	fieldset
+		#question
+		#zonereponse Glisser la lettre de la réponse ici
+		#choix
+		#button
+		input#numquestion(type='hidden', name="question" )
+		input(type='hidden', name="reponse", id ="reponse" )
+		a(class='button', href='tableauBord') Retour au menu
+		a(class='button', id="qSuivanteBtn") Question suivante
+		input(type='submit', class='button', value='Valider')
+	aside
+		h1 Statistiques
+		p#note
+                    
+	block js
+	script(src='js/question.js')  
