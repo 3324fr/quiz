@@ -1,11 +1,3 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
 /* Les classes utilisées pour générer la boîte modale proviennent du tutoriel suivant : http://www.cssscript.com/minimal-overlay-modal-pure-css/e*/
 /* Celles-ci ont été légèrement modifiées pour expérimenter avec la solution et apporter des mofications dans les prochaines itérations du projet */
 .modal {
@@ -173,10 +165,10 @@ nav ul li{
 	padding: 8px;
 	list-style: none; 	
 }
-nav ul a:hover:not(.current) {
+nav ul a:hover:not(.active) {
 	background-color : #ef2;
 }
-nav ul a.current {
+nav ul a.active {
 	padding: 5px;
 	border: 2px solid;
 	border-radius: 4px;	
