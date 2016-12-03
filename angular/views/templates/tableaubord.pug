@@ -1,0 +1,55 @@
+main
+    h1 Menu personnel
+    form(method='Get', action='question')
+        fieldset
+            legend Début d'un test rapide.
+            input(type='submit', value='Examen rapide')
+    form(method='Post', action='examen')
+        fieldset
+            legend Début d'un examen officiel.
+            label(for='domaine')
+            select(name='domaine', id='domaine')
+                option(value='html') HTML5
+                option(value='css') CSS3
+                option(value='js') Javascript
+            label(for='nombre') Choisissez le nombre de questions.
+            input(type='number', min='2', value='2',name = 'nombre', id='nombre')
+            input(type='hidden', name = 'examen_id', value='0')
+            input(type='submit', value='Examen officiel')
+            
+    form(method='Get', action='ajouterQuestion')
+        fieldset
+            legend Modification des questions
+            input(type='submit', value='Ajouter une question')
+    form(method='Post', action='reprendreExamen' id='repriseExam')
+        fieldset
+            legend Reprendre un examen
+            input(type='hidden', name='reprise', value='1', id='reprise')
+            input(type='submit', value='Reprendre')
+    form(method='Post', action='reinitialiserStatistiques')
+        fieldset
+            legend Reinitialiser les statistiques
+            input(type='submit', value='Reinitialiser')
+    form(method='Post', action='reinitialiserExamens')
+        fieldset
+            legend Reinitialiser les examens
+            input(type='submit', value='Reinitialiser')
+    aside
+        h1 Statistique
+        p Note examens (Tous les examens termines) : 
+        p#noteRapide 
+        p Note des examens (Moyenne des scores des examens sur 100) : 
+        p#note.shadow 15 %
+        //La section suivant est inspirée de la solution HTML fournie au lien suivant: http://www.cssscript.com/minimal-overlay-modal-pure-css/
+        //Nous avons adapté celle-ci pour PUG et nos besoins
+        a.button(href='#modal1') Voir détails
+        #modal1.overlay
+            a.cancel(href='#')
+            .modal
+                h2 Statistiques détaillées
+                .content
+                    p#fenetreModale
+                    
+    block js
+    script(src='js/tableauBord.js')
+    

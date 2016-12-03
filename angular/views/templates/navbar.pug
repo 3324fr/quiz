@@ -1,0 +1,8 @@
+header
+    a(href='accueil') 
+            img(src='/images/questionneur.png', alt='logo', width='100', height='150')
+    nav
+        ul
+            each item, name  in {'Accueil' : 'accueil','Instruction' : 'instruction' , 'Tableau de bord' : 'tableauBord'}
+                li(id = item): a(routerLink = '/'+ item , routerLinkActive = 'active')= name
+router-outlet 
