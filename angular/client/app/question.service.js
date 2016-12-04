@@ -20,7 +20,7 @@ var QuestionService = (function () {
     QuestionService.prototype.getQuestion = function () {
         return this.http.get(this.appUrl + '/random')
             .toPromise()
-            .then(function (response) { return response.json().data; });
+            .then(function (res) { return res.json(); });
     };
     QuestionService = __decorate([
         core_1.Injectable(), 

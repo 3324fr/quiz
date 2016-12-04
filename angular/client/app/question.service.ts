@@ -16,6 +16,6 @@ export class QuestionService {
     getQuestion(): Promise<Question> {
         return this.http.get(this.appUrl + '/random')
             .toPromise()
-            .then(response => response.json().data as Question)
+            .then(res => res.json());
     }
 }

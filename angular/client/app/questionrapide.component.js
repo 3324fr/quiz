@@ -13,6 +13,7 @@ var question_service_1 = require('./question.service');
 var QuestionrapideComponent = (function () {
     function QuestionrapideComponent(questionService) {
         this.questionService = questionService;
+        this.mode = 'Promise';
     }
     QuestionrapideComponent.prototype.ngOnInit = function () {
         this.getQuestion();
@@ -21,7 +22,7 @@ var QuestionrapideComponent = (function () {
         var _this = this;
         this.questionService
             .getQuestion()
-            .then(function (question) { return _this.question = question; });
+            .then(function (question) { _this.text = question.question_text; _this.choix_un = question.choix_un; _this.choix_deux = question.choix_deux; _this.choix_trois = question.choix_trois; _this.choix_quatre = question.choix_quatre; });
     };
     QuestionrapideComponent = __decorate([
         core_1.Component({

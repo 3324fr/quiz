@@ -1,20 +1,24 @@
 main
-	h1 Questionnaire Rapide
-	section
-	form(method='POST',action='question',id='monForm')
-	fieldset
-		#question
-		#zonereponse Glisser la lettre de la réponse ici
-		#choix
-		#button
-		input#numquestion(type='hidden', name="question" )
-		input(type='hidden', name="reponse", id ="reponse" )
-		a(class='button', href='tableauBord') Retour au menu
-		a(class='button', id="qSuivanteBtn") Question suivante
-		input(type='submit', class='button', value='Valider')
-	aside
-		h1 Statistiques
-		p#note
+    h1 Questionnaire Rapide
+    section
+    form(method='POST',action='question',id='monForm')
+    fieldset
+        #question {{text}}
+        #zonereponse Glisser la lettre de la réponse ici
+        input(type="radio", name="response", value="1")
+        |1. {{choix_un}}
+        input(type="radio", name="response", value="2")
+        |2. {{choix_deux}}
+        input(type="radio", name="response", value="3")
+        |3. {{choix_trois}}
+        input(type="radio", name="response", value="4")
+        |4. {{choix_quatre}}
+        a(class='button', href='tableauBord') Retour au menu
+        a(class='button', id="qSuivanteBtn") Question suivante
+        input(type='submit', class='button', value='Valider')
+    aside
+        h1 Statistiques
+        p#note
                     
-	block js
-	script(src='js/question.js')  
+    block js
+    script(src='js/question.js')  
