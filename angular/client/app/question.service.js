@@ -22,6 +22,11 @@ var QuestionService = (function () {
             .toPromise()
             .then(function (res) { return res.json(); });
     };
+    QuestionService.prototype.validate = function (id) {
+        return this.http.post(this.appUrl + '/validate', JSON.stringify({ id: id }), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); });
+    };
     QuestionService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

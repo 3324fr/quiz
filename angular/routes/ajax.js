@@ -10,9 +10,19 @@ router.get('/random', function(req, res, next) {
     Question.findOneRandom(function(err, todo) {
         if (err)
             res.send(err);
+		todo.reponse = -1;
         res.json(todo);
     });
 });
+
+router.post('/validate', function (req, res, next) {
+    Question.findById(req.body.id, function(err, todo) {
+        if (err)
+            res.send(err);
+        res.json(todo.reponse);
+    });
+});
+
 router.get('/examenhtml', function(req, res) {
     var filter = { subject: 'html'};
     Question.findRandom(filter, {}, {limit: 1}, function(err, results) {

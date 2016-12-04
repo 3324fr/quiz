@@ -18,4 +18,10 @@ export class QuestionService {
             .toPromise()
             .then(res => res.json());
     }
+
+    validate(id: Number): Promise<number> {
+        return this.http.post(this.appUrl + '/validate', JSON.stringify({ id: id }), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json());
+    }
 }

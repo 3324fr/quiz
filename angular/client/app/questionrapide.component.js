@@ -13,6 +13,17 @@ var question_service_1 = require('./question.service');
 var QuestionrapideComponent = (function () {
     function QuestionrapideComponent(questionService) {
         this.questionService = questionService;
+        this.isAnswered = false;
+        this.goodAnswer = -1;
+        this.question = {
+            question_text: "default",
+            choix_un: "default",
+            choix_deux: "default",
+            choix_trois: "default",
+            choix_quatre: "default",
+            subject: "default",
+            _id: -1,
+        };
         this.mode = 'Promise';
     }
     QuestionrapideComponent.prototype.ngOnInit = function () {
@@ -20,9 +31,27 @@ var QuestionrapideComponent = (function () {
     };
     QuestionrapideComponent.prototype.getQuestion = function () {
         var _this = this;
+        this.isAnswered = false;
         this.questionService
             .getQuestion()
-            .then(function (question) { _this.text = question.question_text; _this.choix_un = question.choix_un; _this.choix_deux = question.choix_deux; _this.choix_trois = question.choix_trois; _this.choix_quatre = question.choix_quatre; });
+            .then(function (question) {
+            console.log(question);
+            _this.question.question_text = question.question_text;
+            _this.question.choix_un = question.choix_un;
+            _this.question.choix_deux = question.choix_deux;
+            _this.question.choix_trois = question.choix_trois;
+            _this.question.choix_quatre = question.choix_quatre;
+            _this.question._id = question._id;
+        });
+    };
+    QuestionrapideComponent.prototype.validate = function (optionId) {
+        var _this = this;
+        this.questionService
+            .validate(this.question._id)
+            .then(function (reponse) {
+            _this.isAnswered = true;
+            _this.goodAnswer = reponse;
+        });
     };
     QuestionrapideComponent = __decorate([
         core_1.Component({

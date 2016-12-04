@@ -1,24 +1,24 @@
 main
     h1 Questionnaire Rapide
     section
-    form(method='POST',action='question',id='monForm')
     fieldset
-        #question {{text}}
-        #zonereponse Glisser la lettre de la réponse ici
-        input(type="radio", name="response", value="1")
-        |1. {{choix_un}}
-        input(type="radio", name="response", value="2")
-        |2. {{choix_deux}}
-        input(type="radio", name="response", value="3")
-        |3. {{choix_trois}}
-        input(type="radio", name="response", value="4")
-        |4. {{choix_quatre}}
-        a(class='button', href='tableauBord') Retour au menu
-        a(class='button', id="qSuivanteBtn") Question suivante
-        input(type='submit', class='button', value='Valider')
+        #question {{question.question_text}}
+        div([class.borderBonneReponse]='isAnswered && goodAnswer == 1')
+            input([disabled]='isAnswered', type="radio", name="response", (click)='validate(1)')
+            |1. {{question.choix_un}}
+        div([class.borderBonneReponse]='isAnswered && goodAnswer == 2')
+            input([disabled]='isAnswered', type="radio", name="response", (click)='validate(2)')
+            |2. {{question.choix_deux}}
+        div([class.borderBonneReponse]='isAnswered && goodAnswer == 3')
+            input([disabled]='isAnswered', type="radio", name="response", (click)='validate(3)')
+            |3. {{question.choix_trois}}
+        div([class.borderBonneReponse]='isAnswered && goodAnswer == 4')
+            input([disabled]='isAnswered', type="radio", name="response", (click)='validate(4)')
+            |4. {{question.choix_quatre}}
+        div
+            a([routerLink]="['/tableauBord']" class="button") Retour au menu
+            button.button([disabled]='!isAnswered', (click)='getQuestion()') Question suivante
     aside
         h1 Statistiques
         p#note
-                    
-    block js
-    script(src='js/question.js')  
+router-outlet
