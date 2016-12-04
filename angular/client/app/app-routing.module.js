@@ -14,12 +14,14 @@ var accueil_component_1 = require('./accueil.component');
 var instruction_component_1 = require('./instruction.component');
 var tableaubord_component_1 = require('./tableaubord.component');
 var questionrapide_component_1 = require('./questionrapide.component');
+var examen_component_1 = require('./examen.component');
 var routes = [
     { path: '', redirectTo: '/accueil', pathMatch: 'full' },
     { path: 'accueil', component: accueil_component_1.AccueilComponent },
     { path: 'instruction', component: instruction_component_1.InstructionComponent },
     { path: 'tableauBord', component: tableaubord_component_1.TableaubordComponent },
-    { path: 'questionRapide', component: questionrapide_component_1.QuestionrapideComponent }
+    { path: 'questionRapide', component: questionrapide_component_1.QuestionrapideComponent },
+    { path: 'examen', component: examen_component_1.ExamenComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

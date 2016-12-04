@@ -3,18 +3,18 @@ main
     fieldset
         legend Début d'un test rapide.
         a([routerLink]="['/questionRapide']" class="button") Question Rapide
-    form(method='Post', action='examen')
-        fieldset
-            legend Début d'un examen officiel.
-            label(for='domaine')
-            select(name='domaine', id='domaine')
-                option(value='html') HTML5
-                option(value='css') CSS3
-                option(value='js') Javascript
-            label(for='nombre') Choisissez le nombre de questions.
-            input(type='number', min='2', value='2',name = 'nombre', id='nombre')
-            input(type='hidden', name = 'examen_id', value='0')
-            input(type='submit', value='Examen officiel')
+
+    fieldset
+        legend Début d'un examen officiel.
+        label(for='domaine')
+        select(name='domaine', id='domaine')
+            option(value='html') HTML5
+            option(value='css') CSS3
+            option(value='js') Javascript
+        label(for='nombre') Choisissez le nombre de questions.
+        input(type='number', min='2', value='2',name = 'nombre', id='nombre')
+        input(type='hidden', name = 'examen_id', value='0')
+        a([routerLink]="['/examen']" class="button") Examen officiel
             
     form(method='Get', action='ajouterQuestion')
         fieldset

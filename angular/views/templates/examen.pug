@@ -1,5 +1,6 @@
+
 main
-    h1 Questionnaire Rapide
+    h1 Examen de web !!!
     section
         fieldset
             #question {{question.question_text}}
@@ -18,7 +19,8 @@ main
             div
                 a([routerLink]="['/tableauBord']" class="button") Retour au menu
                 button.button([disabled]='!isAnswered', (click)='getQuestion()') Question suivante
-    aside
-        h1 Statistiques
-        p#note
-router-outlet
+                
+        aside
+            h1 Statistiques
+            p#note 
+

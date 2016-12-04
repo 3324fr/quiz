@@ -6,6 +6,7 @@ import { AccueilComponent } from './accueil.component';
 import { InstructionComponent } from './instruction.component';
 import { TableaubordComponent } from './tableaubord.component';
 import { QuestionrapideComponent } from './questionrapide.component';
+import { ExamenComponent } from './examen.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'instruction', component: InstructionComponent},
     { path: 'tableauBord', component: TableaubordComponent },
     { path: 'questionRapide', component: QuestionrapideComponent }
+    { path: 'examen', component: ExamenComponent }
 ];
 
 @NgModule({
