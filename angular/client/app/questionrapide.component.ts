@@ -43,13 +43,14 @@ export class QuestionrapideComponent implements OnInit {
               this.question.choix_deux = question.choix_deux;
               this.question.choix_trois = question.choix_trois;
               this.question.choix_quatre = question.choix_quatre;
+              this.question.subject = question.subject;
               this.question._id = question._id;
           });
     }
 
     validate(optionId): void {
         this.questionService
-            .validate(this.question._id)
+            .validateQuestion(this.question._id, optionId)
             .then(reponse => {
                 this.isAnswered = true;
                 this.goodAnswer = reponse;

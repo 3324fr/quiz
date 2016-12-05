@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
+import { ExamService } from './exam.service';
 import { QuestionService } from './question.service';
 import { Question } from './question';
 
@@ -13,6 +14,8 @@ import { Question } from './question';
 export class ExamenComponent implements OnInit {
     isAnswered: boolean = false;
     goodAnswer: number = -1;
+    examNumber: number = -1;
+    questionRestante: number = 1000;
     question: Question = {
         question_text: "default",
         choix_un: "default",
@@ -25,34 +28,48 @@ export class ExamenComponent implements OnInit {
     mode = 'Promise';
 
     constructor(
+        private examService: ExamService,
         private questionService: QuestionService
     ) { }
 
     ngOnInit(): void {
-       this.getQuestion();
+        this.createExam();
+        this.getQuestion();
     }
 
     getQuestion(): void {
       this.isAnswered = false;
-      this.questionService
+      this.examService
           .getQuestion()
           .then(question => {
-              console.log(question);
-              this.question.question_text = question.question_text;
-              this.question.choix_un = question.choix_un;
-              this.question.choix_deux = question.choix_deux;
-              this.question.choix_trois = question.choix_trois;
-              this.question.choix_quatre = question.choix_quatre;
-              this.question._id = question._id;
+              this.question.question_text = question[0].question_text;
+              this.question.choix_un = question[0].choix_un;
+              this.question.choix_deux = question[0].choix_deux;
+              this.question.choix_trois = question[0].choix_trois;
+              this.question.choix_quatre = question[0].choix_quatre;
+              this.question.subject = question[0].subject;
+              this.question._id = question[0]._id;
           });
     }
 
     validate(optionId): void {
-        this.questionService
-            .validate(this.question._id)
-            .then(reponse => {
+        this.examService
+            .validate(optionId, this.question._id, this.examNumber)
+            .then(rep => {
                 this.isAnswered = true;
-                this.goodAnswer = reponse;
+                this.goodAnswer = rep.reponse;
+                this.questionRestante = rep.restant;
+                console.log(this.questionRestante);
             });
+        this.examService
+            .validateExam(optionId, this.question._id)
+            .then(() =>{
+            });
+    }
+
+    createExam(): void {
+        this.examService
+            .createExam()
+            .then(response => this.examNumber = response );
     }
 }

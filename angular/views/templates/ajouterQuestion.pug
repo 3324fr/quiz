@@ -1,0 +1,28 @@
+main
+    h1 Menu personnel
+    fieldset
+        legend Ajouter d'une question
+        #label(for='sujet') Sujet de la question
+        select#sujet(name='sujet', #sujet='', [required]='true', (click)='hideMessage()')
+            option(value='html') HTML5
+            option(value='css') CSS3
+            option(value='js') Javascript
+        #label(for='textquestion') Question
+        input#q(name='textquestion', #q='', required, (keyup)='hideMessage()')
+        #label(for='choixun') Choix #1
+        input#c1(name='choixun', #c1='', required, (keyup)='hideMessage()')
+        #label(for='choixdeux') Choix #2
+        input#c2(name='choixdeux', #c2='', required, (keyup)='hideMessage()')
+        #label(for='choixtrois') Choix #3
+        input#c3(name='choixtrois', #c3='', required, (keyup)='hideMessage()')
+        #label(for='choixquatre') Choix #4
+        input#c4(name='choixquatre', #c4='', required, (keyup)='hideMessage()')
+        #label(for='reponse') Reponse de la question
+        select#reponse(name='reponse', #reponse='', required, (click)='hideMessage()')
+            option(value=1) 1
+            option(value=2) 2
+            option(value=3) 3
+            option(value=4) 4
+        p.borderBonneReponse([hidden]='!displayMessage') Question ajoutee !
+        p
+            button.button((click)='addQuestion(sujet.value, reponse.value, q.value, c1.value, c2.value, c3.value, c4.value)') Ajouter !

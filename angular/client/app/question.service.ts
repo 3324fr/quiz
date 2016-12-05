@@ -24,4 +24,25 @@ export class QuestionService {
             .toPromise()
             .then(res => res.json());
     }
+
+    validateQuestion(id: Number, optionId: number): Promise<number> {
+        return this.http.post(this.appUrl + '/validateQuestion', JSON.stringify({ id: id, answer: optionId }), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json());
+    }
+
+    ajouterQuestion(sujet, rep, q, c1, c2, c3, c4): Promise<void> {
+        return this.http.post(this.appUrl + '/ajouterQuestion', JSON.stringify
+            ({
+                sujet: sujet,
+                textquestion: q,
+                reponse: rep,
+                choixun: c1,
+                choixdeux: c2,
+                choixtrois: c3,
+                choixquatre: c4
+            }), { headers: this.headers })
+            .toPromise()
+            .then(() => { });
+    }
 }

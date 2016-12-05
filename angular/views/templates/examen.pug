@@ -1,9 +1,10 @@
-
 main
     h1 Examen de web !!!
     section
         fieldset
-            #question {{question.question_text}}
+            p
+                strong Sujet: {{question.subject}}
+            #question Question: {{question.question_text}}
             div([class.borderBonneReponse]='isAnswered && goodAnswer == 1')
                 input([disabled]='isAnswered', type="radio", name="response", (click)='validate(1)')
                 |1. {{question.choix_un}}
@@ -18,9 +19,7 @@ main
                 |4. {{question.choix_quatre}}
             div
                 a([routerLink]="['/tableauBord']" class="button") Retour au menu
-                button.button([disabled]='!isAnswered', (click)='getQuestion()') Question suivante
-                
-        aside
-            h1 Statistiques
-            p#note 
+                button.button([hidden]='questionRestante <= 1', [disabled]='!isAnswered', (click)='getQuestion()') Question suivante
+            div([hidden]='questionRestante > 1')
+                a([routerLink]="['/examenTermine']" class="button") Examen termine !
 

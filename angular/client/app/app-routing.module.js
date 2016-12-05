@@ -15,13 +15,17 @@ var instruction_component_1 = require('./instruction.component');
 var tableaubord_component_1 = require('./tableaubord.component');
 var questionrapide_component_1 = require('./questionrapide.component');
 var examen_component_1 = require('./examen.component');
+var ajouterquestion_component_1 = require('./ajouterquestion.component');
+var examentermine_component_1 = require('./examentermine.component');
 var routes = [
     { path: '', redirectTo: '/accueil', pathMatch: 'full' },
     { path: 'accueil', component: accueil_component_1.AccueilComponent },
     { path: 'instruction', component: instruction_component_1.InstructionComponent },
     { path: 'tableauBord', component: tableaubord_component_1.TableaubordComponent },
     { path: 'questionRapide', component: questionrapide_component_1.QuestionrapideComponent },
-    { path: 'examen', component: examen_component_1.ExamenComponent }
+    { path: 'examen', component: examen_component_1.ExamenComponent },
+    { path: 'ajouterQuestion', component: ajouterquestion_component_1.AjouterquestionComponent },
+    { path: 'examenTermine', component: examentermine_component_1.ExamentermineComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

@@ -2,7 +2,9 @@ main
     h1 Questionnaire Rapide
     section
         fieldset
-            #question {{question.question_text}}
+            p
+                strong Sujet: {{question.subject}}
+            #question Question: {{question.question_text}}
             div([class.borderBonneReponse]='isAnswered && goodAnswer == 1')
                 input([disabled]='isAnswered', type="radio", name="response", (click)='validate(1)')
                 |1. {{question.choix_un}}

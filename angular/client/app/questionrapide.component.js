@@ -41,13 +41,14 @@ var QuestionrapideComponent = (function () {
             _this.question.choix_deux = question.choix_deux;
             _this.question.choix_trois = question.choix_trois;
             _this.question.choix_quatre = question.choix_quatre;
+            _this.question.subject = question.subject;
             _this.question._id = question._id;
         });
     };
     QuestionrapideComponent.prototype.validate = function (optionId) {
         var _this = this;
         this.questionService
-            .validate(this.question._id)
+            .validateQuestion(this.question._id, optionId)
             .then(function (reponse) {
             _this.isAnswered = true;
             _this.goodAnswer = reponse;

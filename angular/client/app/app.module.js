@@ -17,17 +17,21 @@ var accueil_component_1 = require('./accueil.component');
 var instruction_component_1 = require('./instruction.component');
 var tableaubord_component_1 = require('./tableaubord.component');
 var questionrapide_component_1 = require('./questionrapide.component');
+var ajouterquestion_component_1 = require('./ajouterquestion.component');
+var examentermine_component_1 = require('./examentermine.component');
 var examen_component_1 = require('./examen.component');
 var question_service_1 = require('./question.service');
+var stat_service_1 = require('./stat.service');
+var exam_service_1 = require('./exam.service');
 var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule],
-            declarations: [app_component_1.AppComponent, accueil_component_1.AccueilComponent, instruction_component_1.InstructionComponent, tableaubord_component_1.TableaubordComponent, questionrapide_component_1.QuestionrapideComponent, examen_component_1.ExamenComponent],
-            providers: [question_service_1.QuestionService],
+            imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, app_routing_module_1.AppRoutingModule],
+            declarations: [app_component_1.AppComponent, accueil_component_1.AccueilComponent, instruction_component_1.InstructionComponent, tableaubord_component_1.TableaubordComponent, questionrapide_component_1.QuestionrapideComponent, examen_component_1.ExamenComponent, ajouterquestion_component_1.AjouterquestionComponent, examentermine_component_1.ExamentermineComponent],
+            providers: [question_service_1.QuestionService, stat_service_1.StatService, exam_service_1.ExamService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

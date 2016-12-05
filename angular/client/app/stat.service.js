@@ -11,45 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var QuestionService = (function () {
-    function QuestionService(http) {
+var StatService = (function () {
+    function StatService(http) {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.appUrl = '/ajax';
     }
-    QuestionService.prototype.getQuestion = function () {
-        return this.http.get(this.appUrl + '/random')
-            .toPromise()
-            .then(function (res) { return res.json(); });
-    };
-    QuestionService.prototype.validate = function (id) {
-        return this.http.post(this.appUrl + '/validate', JSON.stringify({ id: id }), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json(); });
-    };
-    QuestionService.prototype.validateQuestion = function (id, optionId) {
-        return this.http.post(this.appUrl + '/validateQuestion', JSON.stringify({ id: id, answer: optionId }), { headers: this.headers })
-            .toPromise()
-            .then(function (res) { return res.json(); });
-    };
-    QuestionService.prototype.ajouterQuestion = function (sujet, rep, q, c1, c2, c3, c4) {
-        return this.http.post(this.appUrl + '/ajouterQuestion', JSON.stringify({
-            sujet: sujet,
-            textquestion: q,
-            reponse: rep,
-            choixun: c1,
-            choixdeux: c2,
-            choixtrois: c3,
-            choixquatre: c4
-        }), { headers: this.headers })
+    StatService.prototype.resetStats = function () {
+        return this.http.post(this.appUrl + '/resetStats', { headers: this.headers })
             .toPromise()
             .then(function () { });
     };
-    QuestionService = __decorate([
+    StatService.prototype.resetExams = function () {
+        return this.http.post(this.appUrl + '/resetExams', { headers: this.headers })
+            .toPromise()
+            .then(function () { });
+    };
+    StatService.prototype.getExams = function () {
+        return this.http.get(this.appUrl + '/getExams')
+            .toPromise()
+            .then(function (res) { return res.json(); });
+    };
+    StatService.prototype.getStats = function () {
+        return this.http.get(this.appUrl + '/getStats')
+            .toPromise()
+            .then(function (res) { return res.json(); });
+    };
+    StatService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], QuestionService);
-    return QuestionService;
+    ], StatService);
+    return StatService;
 }());
-exports.QuestionService = QuestionService;
-//# sourceMappingURL=question.service.js.map
+exports.StatService = StatService;
+//# sourceMappingURL=stat.service.js.map
